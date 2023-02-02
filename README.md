@@ -1,2 +1,2 @@
 # Chemo_FIA
-Modulo di IA che utilizza un algoritmo genetico per la schedulazione di sedute chemioterapiche, con l'obiettivo di ridurre lo spreco dei farmaci
+Modulo id Intelligenza Artificiale che, utilizzando un algoritmo genetico, punta a schedulare delle sedute chemioterapiche in modo da ridurre lo spreco globale dei farmaci e di associare allo stesso appuntamento pazienti con la stessa terapia.
