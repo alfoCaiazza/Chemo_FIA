@@ -30,7 +30,7 @@ def encodeIndividual(patientList, numSeats, numHours, numDays):
 
 
 def generation(patients, numSeats, numHours, numDays):
-    population_size = 30
+    population_size = 50
     population = []
     newIndividual = []
     for i in range(population_size):
@@ -105,7 +105,6 @@ def indexPatients(schedule):
 def crossover(ind1, ind2, numPatients):
     newIndi = []
     values = []
-
     for elem in range(int(len(ind1)/2)):
         if ind1[elem].index(1) not in values:
             values.append(ind1[elem].index(1))
@@ -117,7 +116,6 @@ def crossover(ind1, ind2, numPatients):
                 values.append(elem.index(1))
                 newIndi.append(elem)
 
-
     if len(newIndi) < numPatients:
         for i in range(numPatients):
             default_indi = [0] * numPatients
@@ -127,7 +125,68 @@ def crossover(ind1, ind2, numPatients):
 
     return newIndi
 
+def rouletteWheel(fitness):
+    winners = []
+    pos = 0
+    i = 0
+    probabilities = []
+    total_fitness = sum(fitness)  # calcolo del valore di fitness totale
+    for value in fitness:
+        probabilities.append({"position": pos,
+                              "probability": value / total_fitness})  # viene creato un array dove vengono memorizzate le probabilità e gli indici di esse (questi corrispondono agli indici che gli individui hanno nell'array popolazione)
+        pos += 1
 
-gen = generation(patients, 6, 6, 5)
-fitness(gen, patients)
+    while i < len(fitness):  # il ciclo viene iterato tante volte quanti sono gli individui della popolazione
+        win = random.choice(probabilities)  # viene estratto il vincitore
+        if win.get(
+                "position") not in winners:  # se il vincitore non è gia presente tra quelli precedentemente estratti viene aggiunto all'array
+            winners.append(win.get("position"))
+        i += 1
+    return winners
 
+
+def mutation(individual):
+    val = [0, 1]
+    prob = [.99, .01]
+    probMutation = random.choices(val, prob)
+    if probMutation[0] == 1:
+        nraw = len(patients) - 1
+        row1 = random.randint(0, nraw)
+        row2 = random.randint(0, nraw)
+        temp = individual[row1]
+        individual[row1] = individual[row2]
+        individual[row2] = temp
+        return individual
+    else:
+        return individual
+
+def algorithm():
+    population = generation(patients, 6, 5, 5)
+    populationSize = len(population)
+
+    while populationSize != 1:
+        fit = fitness(population, patients)
+        selectedIndividuals = rouletteWheel(fit)
+
+        if len(selectedIndividuals) <= 2:
+            return population[selectedIndividuals[0]]
+
+        nextGen = []
+        for i in range(len(selectedIndividuals)):
+            for j in range(len(selectedIndividuals) - 1):
+                if j == i+1:
+                    newIndi = crossover(population[selectedIndividuals[i]], population[selectedIndividuals[j]], len(patients))
+                    newIndi = mutation(newIndi)
+                    nextGen.append(newIndi)
+                    newIndi = []
+        population = nextGen
+        populationSize = len(population)
+        print(populationSize)
+
+    return population[0]
+
+
+population = algorithm()
+print(len(population))
+for elem in population:
+    print("Appuntamento " + str(elem) + ": " + patients[elem.index(1)]['name'] + " " + patients[elem.index(1)]['surname'])
