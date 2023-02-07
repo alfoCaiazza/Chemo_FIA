@@ -189,4 +189,4 @@ def algorithm():
 population = algorithm()
 print(len(population))
 for elem in population:
-    print("Appuntamento " + str(elem) + ": " + patients[elem.index(1)]['name'] + " " + patients[elem.index(1)]['surname'])
+    print(patients[elem.index(1)]['name'] + " " + patients[elem.index(1)]['surname'])
