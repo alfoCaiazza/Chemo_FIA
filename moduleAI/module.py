@@ -30,8 +30,7 @@ def encodeIndividual(patientList, numSeats, numHours, numDays):
 
 
 def generation(patients, numSeats, numHours, numDays):
-    population_size = random.randrange(len(patients) + 1, 30)
-    print("Population size: " + str(population_size))
+    population_size = 30
     population = []
     newIndividual = []
     for i in range(population_size):
@@ -130,5 +129,5 @@ def crossover(ind1, ind2, numPatients):
 
 
 gen = generation(patients, 6, 6, 5)
-fit = fitness(gen, patients)
-print(fit)
+fitness(gen, patients)
+
