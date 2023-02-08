@@ -51,10 +51,13 @@ def fitness(generation, patients):
             for j in range(len(patients) - 1):
                 for k in range(len(patients) - 2):
                     fit = 0
-                    if j == i+1 and k == j+1:
-                        if patients[lista_indici_pazienti[i]]['medicineId'] == patients[lista_indici_pazienti[j]]['medicineId'] and patients[lista_indici_pazienti[j]]['medicineId'] == patients[lista_indici_pazienti[k]]['medicineId']:
+                    if j == i + 1 and k == j + 1:
+                        if patients[lista_indici_pazienti[i]]['medicineId'] == patients[lista_indici_pazienti[j]][
+                            'medicineId'] and patients[lista_indici_pazienti[j]]['medicineId'] == \
+                                patients[lista_indici_pazienti[k]]['medicineId']:
                             fit += 0.7
-                        elif patients[lista_indici_pazienti[i]]['medicineId'] == patients[lista_indici_pazienti[j]]['medicineId']:
+                        elif patients[lista_indici_pazienti[i]]['medicineId'] == patients[lista_indici_pazienti[j]][
+                            'medicineId']:
                             fit += 0.3
                     fit_of_indi += fit
 
@@ -79,7 +82,7 @@ def medConsume(medicine, patients, totQuant):
     return totQuant
 
 
-#La prima generazione di soluzioni, generate in modo casaule, è pessima: non esistono schedulazioni che considerano tutti gli individui
+# La prima generazione di soluzioni, generate in modo casaule, è pessima: non esistono schedulazioni che considerano tutti gli individui
 def countConflict(schedule):
     lista_indici_pazienti = indexPatients(schedule)
     res = []
@@ -105,7 +108,7 @@ def indexPatients(schedule):
 def crossover(ind1, ind2, numPatients):
     newIndi = []
     values = []
-    for elem in range(int(len(ind1)/2)):
+    for elem in range(int(len(ind1) / 2)):
         if ind1[elem].index(1) not in values:
             values.append(ind1[elem].index(1))
             newIndi.append(ind1[elem])
@@ -125,12 +128,14 @@ def crossover(ind1, ind2, numPatients):
 
     return newIndi
 
+
 def rouletteWheel(fitness):
     winners = []
     pos = 0
     i = 0
     probabilities = []
     total_fitness = sum(fitness)  # calcolo del valore di fitness totale
+
     for value in fitness:
         probabilities.append({"position": pos,
                               "probability": value / total_fitness})  # viene creato un array dove vengono memorizzate le probabilità e gli indici di esse (questi corrispondono agli indici che gli individui hanno nell'array popolazione)
@@ -160,22 +165,33 @@ def mutation(individual):
     else:
         return individual
 
+
 def algorithm():
     population = generation(patients, 6, 5, 5)
     populationSize = len(population)
+    max_fit = 0
 
+    #forse è meglio aggiungere un certo numero di possibilità da dare all'algoritmo
     while populationSize != 1:
         fit = fitness(population, patients)
+        max_next = max(fit)
+        if max_next < max_fit:
+            return best
+        else:
+            best = population[fit.index(max_next)]
+            max_fit = max_next
+
         selectedIndividuals = rouletteWheel(fit)
 
         if len(selectedIndividuals) <= 2:
-            return population[selectedIndividuals[0]]
+            return best
 
         nextGen = []
         for i in range(len(selectedIndividuals)):
             for j in range(len(selectedIndividuals) - 1):
-                if j == i+1:
-                    newIndi = crossover(population[selectedIndividuals[i]], population[selectedIndividuals[j]], len(patients))
+                if j == i + 1:
+                    newIndi = crossover(population[selectedIndividuals[i]], population[selectedIndividuals[j]],
+                                        len(patients))
                     newIndi = mutation(newIndi)
                     nextGen.append(newIndi)
                     newIndi = []
@@ -183,7 +199,7 @@ def algorithm():
         populationSize = len(population)
         print(populationSize)
 
-    return population[0]
+
 
 
 population = algorithm()
