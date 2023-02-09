@@ -108,16 +108,16 @@ def indexPatients(schedule):
 def crossover(ind1, ind2, numPatients):
     newIndi = []
     values = []
-    for elem in range(int(len(ind1) / 2)):
-        if ind1[elem].index(1) not in values:
-            values.append(ind1[elem].index(1))
-            newIndi.append(ind1[elem])
+    for el in range(int(len(ind1) / 2)):
+        if ind1[el].index(1) not in values:
+            values.append(ind1[el].index(1))
+            newIndi.append(ind1[el])
 
-    for elem in ind2:
+    for el in range(len(ind2)):
         if len(newIndi) < numPatients:
-            if elem.index(1) not in values:
-                values.append(elem.index(1))
-                newIndi.append(elem)
+            if ind2[el].index(1) not in values:
+                values.append(ind2[el].index(1))
+                newIndi.append(ind2[el])
 
     if len(newIndi) < numPatients:
         for i in range(numPatients):
@@ -143,9 +143,8 @@ def rouletteWheel(fitness):
 
     while i < len(fitness):  # il ciclo viene iterato tante volte quanti sono gli individui della popolazione
         win = random.choice(probabilities)  # viene estratto il vincitore
-        if win.get(
-                "position") not in winners:  # se il vincitore non è gia presente tra quelli precedentemente estratti viene aggiunto all'array
-            winners.append(win.get("position"))
+        #se il vincitore non è gia presente tra quelli precedentemente estratti viene aggiunto all'array
+        winners.append(win.get("position"))
         i += 1
     return winners
 
@@ -175,8 +174,12 @@ def algorithm():
     while populationSize != 1:
         fit = fitness(population, patients)
         max_next = max(fit)
+        chance = 2
+
         if max_next < max_fit:
-            return best
+            chance -= 1
+            if chance == 0:
+                return best
         else:
             best = population[fit.index(max_next)]
             max_fit = max_next
@@ -194,15 +197,15 @@ def algorithm():
                                         len(patients))
                     newIndi = mutation(newIndi)
                     nextGen.append(newIndi)
-                    newIndi = []
         population = nextGen
         populationSize = len(population)
         print(populationSize)
 
 
 
-
 population = algorithm()
 print(len(population))
+resultList = []
 for elem in population:
     print(patients[elem.index(1)]['name'] + " " + patients[elem.index(1)]['surname'])
+
