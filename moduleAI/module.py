@@ -108,6 +108,7 @@ def indexPatients(schedule):
 def crossover(ind1, ind2, numPatients):
     newIndi = []
     values = []
+
     for el in range(int(len(ind1) / 2)):
         if ind1[el].index(1) not in values:
             values.append(ind1[el].index(1))
@@ -166,7 +167,7 @@ def mutation(individual):
 
 
 def algorithm():
-    population = generation(patients, 6, 5, 5)
+    population = generation(patients, 5, 5, 5)
     populationSize = len(population)
     max_fit = 0
 
@@ -174,7 +175,7 @@ def algorithm():
     while populationSize != 1:
         fit = fitness(population, patients)
         max_next = max(fit)
-        chance = 2
+        chance = 2 #Diamo all'algoritmo due possbilità per continuare a cercare una soluzione migliore nel caso in cui quella attuale sia peggiore della precedente
 
         if max_next < max_fit:
             chance -= 1
@@ -191,21 +192,109 @@ def algorithm():
 
         nextGen = []
         for i in range(len(selectedIndividuals)):
-            for j in range(len(selectedIndividuals) - 1):
+            for j in range(len(selectedIndividuals)):
                 if j == i + 1:
                     newIndi = crossover(population[selectedIndividuals[i]], population[selectedIndividuals[j]],
                                         len(patients))
                     newIndi = mutation(newIndi)
-                    nextGen.append(newIndi)
+                    if newIndi is None:
+                        continue
+                    else:
+                        nextGen.append(newIndi)
         population = nextGen
         populationSize = len(population)
         print(populationSize)
 
 
+def printSchedule(schedule):
+    result = indexPatients(schedule)
+
+    for i in range(len(population)):
+        #Risistema gli indici a partire da 4
+        if i <= 5:
+            if i == 0:
+                print("LUNEDI ore 9:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 5 < i <= 10:
+            if i == 6:
+                print("LUNEDI ore 10:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 10 < i <= 15:
+            if i == 11:
+                print("LUNEDI ore 11:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 15 < i <= 20:
+            if i == 16:
+                print("LUNEDI ore 12:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 20 < i <= 25:
+            if i == 21:
+                print("MARTEDI ore 9:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 25 < i <= 30:
+            if i == 26:
+                print("MARTEDI ore 10:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 30 < i <= 35:
+            if i == 31:
+                print("MARTEDI ore 11:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 35 < i <= 40:
+            if i == 36:
+                print("MARTEDI ore 12:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 40 < i <= 45:
+            if i == 41:
+                print("MERCOLEDI ore 9:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 45 < i <= 50:
+            if i == 46:
+                print("MERCOLEDI ore 10:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 50 < i <= 55:
+            if i == 51:
+                print("MERCOLEDI ore 11:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 55 < i <= 60:
+            if i == 56:
+                print("MERCOLEDI ore 12:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 60 < i <= 65:
+            if i == 61:
+                print("GIOVEDI ore 9:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 65 < i <= 70:
+            if i == 66:
+                print("GIOVEDI ore 10:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 70 < i <= 75:
+            if i == 71:
+                print("GIOVEDI ore 11:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 75 < i <= 80:
+            if i == 76:
+                print("GIOVEDI ore 12:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 80 < i <= 85:
+            if i == 81:
+                print("VENERDI ore 9:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 85 < i <= 90:
+            if i == 86:
+                print("VENERDI ore 10:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 90 < i <= 95:
+            if i == 91:
+                print("VENERDI ore 11:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+        elif 95 < i <= 100:
+            if i == 96:
+                print("VENERDI ore 11:00:")
+            print("\t" + patients[i]['name'] + " " + patients[i]['surname'])
+
+
 
 population = algorithm()
 print(len(population))
-resultList = []
-for elem in population:
-    print(patients[elem.index(1)]['name'] + " " + patients[elem.index(1)]['surname'])
-
+printSchedule(population)
+#per capire se list è vuoto o no usare la sintassi if not lista
