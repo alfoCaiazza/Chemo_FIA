@@ -209,7 +209,7 @@ def algorithm():
 
 
 def printSchedule(schedule):
-    for i in range(len(population)):
+    for i in range(len(patients)):
         if i <= 4:
             if i == 0:
                 print("LUNEDI ore 9:00:")
