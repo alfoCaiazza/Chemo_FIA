@@ -30,7 +30,7 @@ def encodeIndividual(patientList, numSeats, numHours, numDays):
 
 
 def generation(patients, numSeats, numHours, numDays):
-    population_size = 50
+    population_size = 1000
     population = []
     newIndividual = []
     for i in range(population_size):
@@ -213,83 +213,83 @@ def printSchedule(schedule):
         if i <= 4:
             if i == 0:
                 print("LUNEDI ore 9:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'] + ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 4 < i <= 9:
             if i == 6:
                 print("LUNEDI ore 10:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 9 < i <= 14:
             if i == 11:
                 print("LUNEDI ore 11:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 14 < i <= 19:
             if i == 16:
                 print("LUNEDI ore 12:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 19 < i <= 24:
             if i == 21:
                 print("MARTEDI ore 9:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 24 < i <= 29:
             if i == 26:
                 print("MARTEDI ore 10:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 29 < i <= 34:
             if i == 31:
                 print("MARTEDI ore 11:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 34 < i <= 39:
             if i == 36:
                 print("MARTEDI ore 12:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 39 < i <= 44:
             if i == 41:
                 print("MERCOLEDI ore 9:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 44 < i <= 49:
             if i == 46:
                 print("MERCOLEDI ore 10:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 49 < i <= 54:
             if i == 51:
                 print("MERCOLEDI ore 11:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 54 < i <= 59:
             if i == 56:
                 print("MERCOLEDI ore 12:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 59 < i <= 64:
             if i == 61:
                 print("GIOVEDI ore 9:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 64 < i <= 69:
             if i == 66:
                 print("GIOVEDI ore 10:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 69 < i <= 74:
             if i == 71:
                 print("GIOVEDI ore 11:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 74 < i <= 79:
             if i == 76:
                 print("GIOVEDI ore 12:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 79 < i <= 84:
             if i == 81:
                 print("VENERDI ore 9:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 84 < i <= 89:
             if i == 86:
                 print("VENERDI ore 10:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 89 < i <= 94:
             if i == 91:
                 print("VENERDI ore 11:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
         elif 94 < i <= 99:
             if i == 96:
                 print("VENERDI ore 12:00:")
-            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname'])
+            print("\t" + patients[schedule[i].index(1)]['name'] + " " + patients[schedule[i].index(1)]['surname']+ ": " + str(patients[schedule[i].index(1)]['medicineId']))
 
 
 population = algorithm()
